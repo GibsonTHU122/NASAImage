@@ -14,23 +14,23 @@
 
 - (void)setRadiusImageWithUrl:(NSString *)url placeHolder:(NSString *)placeHolderStr radius:(CGFloat)radius {
     if (radius != 0.0) {
-        NSString *cacheurlStr = [url stringByAppendingString:@"radiusCache"];
-        UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheurlStr];
-        if (cacheImage) {
-            self.image = cacheImage;
-        }else {
-            [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:placeHolderStr] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (!error) {
-                    UIImage *radiusImage = [image imageCornerRadius:radius];
+        [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIImage *smallimage = [UIImage compressImageWith:image];
+                    UIImage *radiusImage = [smallimage imageCornerRadius:40.f];
                     self.image = radiusImage;
-                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr completion:nil];
-                }
-            }];
-        }
+                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:url completion:nil];
+                });
+            }else {
+                NSLog(@"获取图片失败");
+            }
+        }];
     }
     else {
         [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:placeHolderStr] completed:nil];
     }
 }
+
 
 @end

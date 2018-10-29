@@ -8,6 +8,7 @@
 
 #import "ImageTransitioningDelegate.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+RadiusSDWeb.h"
 
 @interface ImageTransitioningDelegate ()
 @property(nonatomic, assign) CGRect BIGFrame;
@@ -48,11 +49,7 @@
     CGRect startRect =  self.cellFrame;
     CGRect endRect = self.BIGFrame;
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imgURL] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"获取图片失败");
-        }
-    }];
+    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:40.f];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [transitionContext.containerView addSubview:imageView];
     imageView.frame = startRect;
@@ -72,11 +69,7 @@
     UIView *dismissView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     [dismissView removeFromSuperview];
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imgURL] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"获取图片失败");
-        }
-    }];
+    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:40.f];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [transitionContext.containerView addSubview:imageView];
     imageView.frame = self.BIGFrame;

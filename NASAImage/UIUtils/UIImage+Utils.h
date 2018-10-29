@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (Utils)
 + (UIImage *)svgImageNamed:(NSString *)name;
 - (UIImage *)imageCornerRadius:(CGFloat)radius;
++ (UIImage *)compressImageWith:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END

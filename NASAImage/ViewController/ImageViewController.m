@@ -8,6 +8,7 @@
 
 #import "ImageViewController.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+RadiusSDWeb.h"
 
 @interface ImageViewController ()
 
@@ -19,11 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageModel.imageURL] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSLog(@"获取图片失败");
-        }
-    }];
+    [self.imageView setRadiusImageWithUrl:self.imageModel.imageURL placeHolder:@"placeHolder" radius:40.f];
     self.titleLabel.text = self.imageModel.title;
     self.desLabel.text = self.imageModel.des;
     

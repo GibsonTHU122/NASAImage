@@ -9,6 +9,7 @@
 #import "ImageTableViewCell.h"
 #import "UIImage+Utils.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+RadiusSDWeb.h"
 
 @interface ImageTableViewCell ()
 @end
@@ -20,35 +21,17 @@
 }
 
 - (void)setupWithmodelA:(NASAImageModel *)modelA modelB:(NASAImageModel *)modelB rowindex:(NSInteger)idx{
-    if (modelA) {
-        [self.imageViewA sd_setImageWithURL:[NSURL URLWithString:modelA.imageURL] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                UIImage *radiusImage = [image imageCornerRadius:40.f];
-                self.imageViewA.image = radiusImage;
-                [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:modelA.imageURL completion:nil];
-            }else {
-                NSLog(@"获取图片失败");
-            }
-        }];
-        self.imageViewA.tag = idx * 2;
-        self.imageViewA.userInteractionEnabled = YES;
+    [self setupImageView:self.imageViewA withModel:modelA index:idx * 2];
+    [self setupImageView:self.imageViewB withModel:modelB index:(idx * 2 + 1)];
+}
+
+- (void)setupImageView:(UIImageView *)imageView withModel:(NASAImageModel *)model index:(NSInteger)idx{
+    if (model) {
+        [imageView setRadiusImageWithUrl:model.imageURL placeHolder:@"placeHolder" radius:40.f];
+        imageView.tag = idx;
+        imageView.userInteractionEnabled = YES;
         UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImage:)];
-        [self.imageViewA addGestureRecognizer:tap];
-    }
-    if (modelB) {
-        [self.imageViewB sd_setImageWithURL:[NSURL URLWithString:modelB.imageURL] placeholderImage:[UIImage imageNamed:@"placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                UIImage *radiusImage = [image imageCornerRadius:40.f];
-                self.imageViewB.image = radiusImage;
-                [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:modelB.imageURL completion:nil];
-            }else {
-                NSLog(@"获取图片失败");
-            }
-        }];
-        self.imageViewB.tag = idx * 2 + 1;
-        self.imageViewB.userInteractionEnabled = YES;
-        UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImage:)];
-        [self.imageViewB addGestureRecognizer:tap];
+        [imageView addGestureRecognizer:tap];
     }
 }
 
