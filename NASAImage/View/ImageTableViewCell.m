@@ -27,7 +27,7 @@
 
 - (void)setupImageView:(UIImageView *)imageView withModel:(NASAImageModel *)model index:(NSInteger)idx{
     if (model) {
-        [imageView setRadiusImageWithUrl:model.imageURL placeHolder:@"placeHolder" radius:40.f];
+        [imageView setRadiusImageWithUrl:model.imageURL placeHolder:@"placeHolder" radius:DefaultRadius];
         imageView.tag = idx;
         imageView.userInteractionEnabled = YES;
         UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImage:)];

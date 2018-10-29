@@ -35,7 +35,7 @@
 }
 
 - (void)setupSubViews{
-    [self.imageView setRadiusImageWithUrl:self.imageModel.imageURL placeHolder:@"placeHolder" radius:40.f];
+    [self.imageView setRadiusImageWithUrl:self.imageModel.imageURL placeHolder:@"placeHolder" radius:DefaultRadius];
     self.titleLabel.text = self.imageModel.title;
     self.desLabel.text = self.imageModel.des;
     

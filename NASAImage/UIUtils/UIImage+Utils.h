@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define DefaultRadius 40.f
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Utils)

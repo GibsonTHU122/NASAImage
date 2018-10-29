@@ -49,7 +49,7 @@
     CGRect startRect =  self.cellFrame;
     CGRect endRect = self.BIGFrame;
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:40.f];
+    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:DefaultRadius];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [transitionContext.containerView addSubview:imageView];
     imageView.frame = startRect;
@@ -69,7 +69,7 @@
     UIView *dismissView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     [dismissView removeFromSuperview];
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:40.f];
+    [imageView setRadiusImageWithUrl:self.imgURL placeHolder:@"placeHolder" radius:DefaultRadius];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [transitionContext.containerView addSubview:imageView];
     imageView.frame = self.BIGFrame;

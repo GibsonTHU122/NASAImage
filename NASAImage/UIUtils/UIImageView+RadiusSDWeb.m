@@ -8,7 +8,6 @@
 
 #import "UIImageView+RadiusSDWeb.h"
 #import "UIImageView+WebCache.h"
-#import "UIImage+Utils.h"
 #import "ImageProcessManager.h"
 
 @implementation UIImageView (RadiusSDWeb)
@@ -21,7 +20,7 @@
                 if (![[ImageProcessManager sharedInstance] processedForURL:url]) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         UIImage *smallimage = [UIImage compressImageWith:image];
-                        UIImage *radiusImage = [smallimage imageCornerRadius:40.f];
+                        UIImage *radiusImage = [smallimage imageCornerRadius:radius];
                         [[ImageProcessManager sharedInstance] setProcessedForURL:url];
                         [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:url completion:nil];
                         dispatch_async(dispatch_get_main_queue(), ^{
