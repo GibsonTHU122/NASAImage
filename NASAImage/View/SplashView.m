@@ -24,7 +24,11 @@
 - (void)setupWithWindow:(UIWindow *)window {
     self.root = window.rootViewController;
     self.backgroundColor = [UIColor whiteColor];
-    
+    [self setupSubViews];
+}
+
+
+- (void)setupSubViews{
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 150, UIScreen.mainScreen.bounds.size.width - 30, 20)];
     self.titleLabel.font = [UIFont systemFontOfSize:17];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

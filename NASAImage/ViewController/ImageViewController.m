@@ -19,15 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    
-    [self.imageView setRadiusImageWithUrl:self.imageModel.imageURL placeHolder:@"placeHolder" radius:40.f];
-    self.titleLabel.text = self.imageModel.title;
-    self.desLabel.text = self.imageModel.des;
-    
-    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeImageVC)];
-    self.bgView.userInteractionEnabled = YES;
-    [self.bgView addGestureRecognizer:tap];
-    self.modalPresentationStyle = UIModalPresentationCustom;
+    [self setupSubViews];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -40,6 +32,16 @@
 {
     [super viewWillDisappear:animated];
     [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+}
+
+- (void)setupSubViews{
+    [self.imageView setRadiusImageWithUrl:self.imageModel.imageURL placeHolder:@"placeHolder" radius:40.f];
+    self.titleLabel.text = self.imageModel.title;
+    self.desLabel.text = self.imageModel.des;
+    
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeImageVC)];
+    self.bgView.userInteractionEnabled = YES;
+    [self.bgView addGestureRecognizer:tap];
 }
 
 - (void)closeImageVC {

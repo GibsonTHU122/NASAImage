@@ -26,12 +26,16 @@ static NSString * const kImageCellId = @"imagecell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setupSubViews];
+    [self loadImages];
+}
+
+- (void)setupSubViews{
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:kImageCellId];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadImages];
 }
 
 - (void)loadImages {
