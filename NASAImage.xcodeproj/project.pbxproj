@@ -25,6 +25,7 @@
 		46BA8E2C2186E7230056E0B0 /* work.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46BA8E2B2186E7230056E0B0 /* work.jpg */; };
 		46BA8E2F2186F6730056E0B0 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BA8E2E2186F6730056E0B0 /* UIImage+Utils.m */; };
 		46BA8E32218700AB0056E0B0 /* UIImageView+RadiusSDWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BA8E31218700AB0056E0B0 /* UIImageView+RadiusSDWeb.m */; };
+		46BA8E3B21876FD20056E0B0 /* ImageProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BA8E3A21876FD20056E0B0 /* ImageProcessManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		46BA8E2E2186F6730056E0B0 /* UIImage+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		46BA8E30218700AB0056E0B0 /* UIImageView+RadiusSDWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RadiusSDWeb.h"; sourceTree = "<group>"; };
 		46BA8E31218700AB0056E0B0 /* UIImageView+RadiusSDWeb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RadiusSDWeb.m"; sourceTree = "<group>"; };
+		46BA8E3921876FD20056E0B0 /* ImageProcessManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcessManager.h; sourceTree = "<group>"; };
+		46BA8E3A21876FD20056E0B0 /* ImageProcessManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageProcessManager.m; sourceTree = "<group>"; };
 		54D9A7C1283C17DA9F698217 /* Pods-NASAImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASAImage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NASAImage/Pods-NASAImage.debug.xcconfig"; sourceTree = "<group>"; };
 		CBCCEA17E9F1C3B054C6D189 /* libPods-NASAImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NASAImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -187,6 +190,8 @@
 				46BA8E2E2186F6730056E0B0 /* UIImage+Utils.m */,
 				46BA8E30218700AB0056E0B0 /* UIImageView+RadiusSDWeb.h */,
 				46BA8E31218700AB0056E0B0 /* UIImageView+RadiusSDWeb.m */,
+				46BA8E3921876FD20056E0B0 /* ImageProcessManager.h */,
+				46BA8E3A21876FD20056E0B0 /* ImageProcessManager.m */,
 			);
 			path = UIUtils;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46BA8E292186BCF50056E0B0 /* SplashView.m in Sources */,
+				46BA8E3B21876FD20056E0B0 /* ImageProcessManager.m in Sources */,
 				468BA4212181D53B005DF489 /* main.m in Sources */,
 				4608B7F6218328E900A9E99E /* ImageTableViewCell.m in Sources */,
 				469CE4132182F17B0032E14F /* NASAImageModel.m in Sources */,

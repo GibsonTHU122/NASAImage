@@ -11,8 +11,7 @@
 #import "ImageModelManager.h"
 #import "ImageViewController.h"
 #import "ImageTransitioningDelegate.h"
-#import "UIImageView+WebCache.h"
-#import "UIImage+Utils.h"
+#import "ImageProcessManager.h"
 
 @interface ImageListViewController () <UITableViewDataSource, UITableViewDelegate, ImageTableViewCellDelegate>
 @property (nonatomic, strong) ImageModelManager *imageModelManager;
@@ -42,7 +41,7 @@ static NSString * const kImageCellId = @"imagecell";
     self.imageModelManager = [[ImageModelManager alloc] initWithRSSURL:@"https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss"];
     self.imageModels = [self.imageModelManager getImageModels];
     [self.tableView reloadData];
-    [self preloadImages];
+    [[ImageProcessManager sharedInstance] preloadImagesWithModels:self.imageModels];
 }
 
 #pragma mark - Table view data source
@@ -88,31 +87,6 @@ static NSString * const kImageCellId = @"imagecell";
     imageVC.modalPresentationStyle = UIModalPresentationCustom;
     imageVC.transitioningDelegate = imagetransitioningDelegate;
     [self presentViewController:imageVC animated:YES completion:nil];
-}
-
-#pragma mark - PreloadImages
-
-- (void)preloadImages {
-    for (int i = 0; i < self.imageModels.count; i++) {
-        NASAImageModel * model = [self.imageModels objectAtIndex:i];
-        if (model) {
-            [self fetchRadiusImageWithUrl:model.imageURL radius:40.f];
-        }
-    }
-}
-
-- (void)fetchRadiusImageWithUrl:(NSString *)url radius:(CGFloat)radius {
-    [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:url] options:0 progress:nil completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        if (!error) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                UIImage *smallimage = [UIImage compressImageWith:image];
-                UIImage *radiusImage = [smallimage imageCornerRadius:40.f];
-                [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:url completion:nil];
-            });
-        }else {
-            NSLog(@"获取图片失败");
-        }
-    }];
 }
 
 @end
