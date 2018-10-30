@@ -71,6 +71,11 @@
     [self updateTimer];
 }
 
+- (void)dealloc {
+    [self.dismissTimer invalidate];
+    self.dismissTimer = nil;
+}
+
 - (void)dismissTimerFired:(NSTimer *)timer {
     if (self.remainingTime <= 1.0) {
         [self.dismissTimer invalidate];
